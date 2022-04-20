@@ -5,7 +5,7 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 
 const webScraper = async () => {
-    const html = await axios.get('https://www.mkspm.com/m/prices.xhtml');
+    const html = await axios.get('https://www.mkspamp.com/m/prices.xhtml');
     const $ = await cheerio.load(html.data);
     let data = [];
     $('table.table-full tbody tr:nth-child(1)').each((i, elem) => {
