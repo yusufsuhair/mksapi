@@ -21,25 +21,25 @@ app.get('/data', async (req, res) => {
         $('table.table-full tbody tr:contains("Gold   : 1 Kilo 999.9 (MYR)")').each((i, elem) => {
             console.log($(elem).find('td.darkteal label').text())
             if (i <= 1) {
-                data.oneKilo = $(elem).find('td.darkteal label').text();
+                data.oneKilo = $(elem).find('td.darkteal label').text().replace(/\s+/g, '');
             }
         });
 
         $('table.table-full tbody tr:contains("Gold   : 100 GM 999.9 (MYR)")').each((i, elem) => {
             if (i <= 1) {
-                data.oneHundredGram = $(elem).find('td.darkteal label').text();
+                data.oneHundredGram = $(elem).find('td.darkteal label').text().replace(/\s+/g, '');
             }
         });
 
         $('table.table-full tbody tr:contains("Gold   : 50 GM 999.9 (MYR)")').each((i, elem) => {
             if (i <= 1) {
-                data.fiftyGram = $(elem).find('td.darkteal label').text();
+                data.fiftyGram = $(elem).find('td.darkteal label').text().replace(/\s+/g, '');
             }
         });
 
         $('table.table-full tbody tr:contains("Gold   : 1 Tael 999.9 (MYR)")').each((i, elem) => {
             if (i <= 1) {
-                data.index = $(elem).find('td.darkteal label').text();
+                data.index = $(elem).find('td.darkteal label').text().replace(/\s+/g, '');
             }
         });
 
