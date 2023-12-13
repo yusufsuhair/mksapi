@@ -45,7 +45,7 @@ app.get('/data', async (req, res) => {
         $('table.table-full tbody tr:contains("Gold   : 1 Tael 999.9 (MYR)")').each((i, elem) => {
             if (i <= 1) {
                 data.push({
-                    oneTael: $(elem).find('td.darkteal label').text()
+                    index: $(elem).find('td.darkteal label').text()
                 })
             }
         });
