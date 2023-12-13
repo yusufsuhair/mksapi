@@ -15,42 +15,40 @@ app.get('/data', async (req, res) => {
     try {
         const html = await axios.get('https://mkspamp.com.my/m/prices.xhtml');
         const $ = await cheerio.load(html.data);
-        let data = [];
+        let result = [];
+        let data = {};
 
         $('table.table-full tbody tr:contains("Gold   : 1 Kilo 999.9 (MYR)")').each((i, elem) => {
             console.log($(elem).find('td.darkteal label').text())
             if (i <= 1) {
-                data.push({
-                    oneKilo: $(elem).find('td.darkteal label').text()
-                })
+                data.oneKilo = $(elem).find('td.darkteal label').text();
             }
         });
 
         $('table.table-full tbody tr:contains("Gold   : 100 GM 999.9 (MYR)")').each((i, elem) => {
             if (i <= 1) {
-                data.push({
-                    oneHundredGram: $(elem).find('td.darkteal label').text()
-                })
+                data.oneHundredGram = $(elem).find('td.darkteal label').text();
             }
         });
 
         $('table.table-full tbody tr:contains("Gold   : 50 GM 999.9 (MYR)")').each((i, elem) => {
             if (i <= 1) {
-                data.push({
-                    fiftyGram: $(elem).find('td.darkteal label').text()
-                })
+                data.fiftyGram = $(elem).find('td.darkteal label').text();
             }
         });
 
         $('table.table-full tbody tr:contains("Gold   : 1 Tael 999.9 (MYR)")').each((i, elem) => {
             if (i <= 1) {
-                data.push({
-                    index: $(elem).find('td.darkteal label').text()
-                })
+                data.index = $(elem).find('td.darkteal label').text();
             }
         });
+
+        result.push(data);
+
+        console.log(result);
+
         // Respond with JSON data
-        res.json(data);
+        res.json(result);
     } catch (error) {
         console.error(error);
         res.status(500).json({error: 'An error occurred'});
